@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="">
+        <img src="/img/n.png" style="height: 32px" />
+        <img src="/img/o.png" style="height: 32px" />
+        <img src="/img/r.png" style="height: 32px" />
+        <img src="/img/d.png" style="height: 32px" />
+        <img src="/img/-.png" style="height: 32px" />
+        <img src="/img/x.png" style="height: 32px" />
+    </div>
+    <h1 class="display-4">Velkommen</h1>
+    <div class="card">
+        <div class="card-header">
+            <h3>Demo Identitet</h3>
+        </div>
+        <div class="card-body">
+            <p>Dette er en demo applikation.</p>
+            <p>Før applikationen starter har du mulighed for at konfigurer din admin profil i <i>appsettings.json</i></p>
+            <p>Hvis ikke du har personligjort en demo profil kan du bruge nedenstående identite to at logge ind.</p>
+            <p><strong>Husk!</strong> Du kan ændre dit kodeord efter du er logget ind.</p>
+            <hr />
+            <h4>@ViewBag.DefaultUsername</h4>
+            <h4>@ViewBag.DefaultPassword</h4>
+            <span class="badge bg-success">Administrator</span>
+        </div>
+        <div class="card-footer">
+            <i>
+                <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+                Find kildekoden på github:
+                <a href="https://github.com/da1081/Nord-X-Solution">github.com/da1081/Nord-X-Solution</a>
+                <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </i>
+        </div>
+    </div>
+
+</div>

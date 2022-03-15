@@ -1,0 +1,50 @@
+﻿@model Nord_X_WebApp.Data.Entities.Measurement
+
+@{
+    ViewData["Title"] = "Detaljer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Detaljer</h1>
+
+<div>
+    <h4>@Html.DisplayNameForModel()</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Measure)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Measure)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OriginRegTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OriginRegTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sensor)
+        </dt>
+        <dd class = "col-sm-10">
+            <a asp-controller="Sensors" asp-action="Details" asp-route-id="@Model.SensorId">
+                @Html.DisplayFor(model => model.Sensor.Name)
+            </a>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index"><span class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Tilbage</span></a>
+</div>

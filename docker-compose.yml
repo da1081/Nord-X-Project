@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  nord-x-webapp:
+    image: ${DOCKER_REGISTRY-}nordxwebapp
+    build:
+      context: .
+      dockerfile: Nord-X-WebApp\Dockerfile

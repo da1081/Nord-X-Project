@@ -1,0 +1,63 @@
+﻿@model Nord_X_WebApp.Data.Entities.Sensor
+
+@{
+    ViewData["Title"] = "Opret";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Opret</h1>
+
+<h4>@Html.DisplayNameForModel()</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            @*Input*@
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endpoint" class="control-label"></label>
+                <input asp-for="Endpoint" class="form-control" />
+                <span asp-validation-for="Endpoint" class="text-danger"></span>
+            </div>
+            
+            @*Select*@
+            <div class="form-group">
+                <label asp-for="CompanyId" class="control-label"></label>
+                <select name="CompanyId" class="form-control" asp-items="@ViewBag.Companies"></select>
+                <span asp-validation-for="CompanyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MeasurementTypeId" class="control-label"></label>
+                <select name="MeasurementTypeId" class="form-control" asp-items="@ViewBag.MeasurementTypes"></select>
+                <span asp-validation-for="MeasurementTypeId" class="text-danger"></span>
+            </div>
+
+            @*Confirm*@
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Opret" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><span class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Tilbage</span></a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

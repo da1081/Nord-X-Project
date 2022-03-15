@@ -1,0 +1,138 @@
+﻿@model Nord_X_WebApp.Data.Entities.Company
+
+@{
+    ViewData["Title"] = "Opret";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Opret</h1>
+
+<h4>@Html.DisplayNameForModel()</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        @*Fill out form with CVR-API*@
+        <div id="cvrWrap" class="input-group">
+            <input id="vatNumber" type="number" class="form-control" placeholder="Indtast CVR-nummer..." />
+            <div class="input-group-append">
+                <button id="getCompany" type="button" class="btn btn-primary">Hent virksomhed</button>
+            </div>
+            <small id="cvrHelpText" class="text-muted">Du kan bruge virksomhedens CVR-nummer til at udfylde nedenstående formular 🤙</small>
+            <small id="cvrErrorText" class="text-danger d-none">Vi kunne ikke finde dette CVR-nummer til dig i øjeblikket 😔</small>
+        </div>
+
+        @*Begin form*@
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            @*Input*@
+            <div class="form-group">
+                <label asp-for="Vat" class="control-label"></label>
+                <input asp-for="Vat" class="form-control" />
+                <span asp-validation-for="Vat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZipCode" class="control-label"></label>
+                <input asp-for="ZipCode" class="form-control" />
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContactMail" class="control-label"></label>
+                <input asp-for="ContactMail" class="form-control" />
+                <span asp-validation-for="ContactMail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReportMail" class="control-label"></label>
+                <input asp-for="ReportMail" class="form-control" />
+                <span asp-validation-for="ReportMail" class="text-danger"></span>
+            </div>
+
+            @*Confirm*@
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Opret" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><span class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Tilbage</span></a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+<script>
+
+    $(document).ready(function () {
+        
+        @*CVR API Click event*@
+        $("#getCompany").click(function () {
+            console.log("getCompany clicked");
+            var vatNumber = $("#vatNumber").val();
+            if ( vatNumber.length != 8 ) {
+                alert("CVR-Nummer skal indeholde 8 cifre.")
+            }
+            $("#cvrWrap").addClass("opacity-50")
+            var request = $.getJSON(`/companies/getcompanycvr?vatNumber=${vatNumber}`, function() {
+                console.log("Get Company Success!");
+                $("#cvrHelpText").removeClass("d-none");
+                $("#cvrErrorText").addClass("d-none");
+            })
+            .done(function( data ) {
+                console.log(`Populating fields with data from company: ${data.name}:${data.vat}`);
+
+                $("#Vat").val(data.vat);
+                $("#Name").val(data.name);
+                $("#Address").val(data.address);
+                $("#ZipCode").val(data.zipcode);
+                $("#City").val(data.city);
+                $("#Description").val(`${data.industrydesc}, ${data.companydesc}`);
+                $("#Phone").val(data.phone);
+                $("#ContactMail").val(data.email);
+                $("#ReportMail").val(data.email);
+            })
+            .fail(function( textStatus, error ) {
+                $("#cvrHelpText").addClass("d-none");
+                $("#cvrErrorText").removeClass("d-none");
+            })
+            .always(function() {
+                $("#cvrWrap").removeClass("opacity-50")
+            });
+        });
+
+    });
+</script>
+
+}
+
+

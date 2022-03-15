@@ -1,0 +1,82 @@
+﻿@model Nord_X_WebApp.Data.Entities.Company
+
+@{
+    ViewData["Title"] = "Rediger";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Rediger</h1>
+
+<h4>@Html.DisplayNameForModel()</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Vat" class="control-label"></label>
+                <input asp-for="Vat" class="form-control" />
+                <span asp-validation-for="Vat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZipCode" class="control-label"></label>
+                <input asp-for="ZipCode" class="form-control" />
+                <span asp-validation-for="ZipCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContactMail" class="control-label"></label>
+                <input asp-for="ContactMail" class="form-control" />
+                <span asp-validation-for="ContactMail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReportMail" class="control-label"></label>
+                <input asp-for="ReportMail" class="form-control" />
+                <span asp-validation-for="ReportMail" class="text-danger"></span>
+            </div>
+
+            @*Hidden*@
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="AddedDate" />
+            <input type="hidden" asp-for="RowVersion" />
+
+            @*Confirm*@
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Gem" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><span class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Tilbage</span></a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

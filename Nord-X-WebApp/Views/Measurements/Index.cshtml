@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Nord_X_WebApp.Data.Entities.Measurement>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@Html.DisplayNameForInnerType((Nord_X_WebApp.Data.Entities.Measurement model) => model)</h1>
+
+<table class="table table-borderless table-striped display compact" id="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Measure)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OriginRegTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddedDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Measure)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginRegTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedDate)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detaljer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@section Scripts
+{
+<script>
+    $(document).ready( function () {
+        var table = $('#table').dataTable({
+            rowReorder: true,
+            stateSave: true,
+            paging: true,
+            "lengthMenu": [[10, 15, 20, 30, 50, -1], [10, 15, 20, 30, 50, "All"]],
+            keys: true,
+            dom: 'Bfrtip',
+            searchPanes: {
+                initCollapsed: true,
+            },
+            buttons: [ 
+                {
+                    extend: 'copy',
+                    text: 'Kopier <i class="fas fa-copy"></i>'
+                }, 
+                {
+                    extend: 'print',
+                    text: 'Print <i class="fas fa-print"></i>'
+                }, 
+                {
+                    extend: 'excel',
+                    text: 'Excel <i class="fas fa-file-excel"></i>'
+                }, 
+                {
+                    extend: 'pdf',
+                    text: 'PDF <i class="fas fa-file-pdf"></i>'
+                }, 
+                {
+                    extend: 'csv',
+                    text: 'CSV <i class="fas fa-file-alt"></i>'
+                },
+                {
+                    extend: 'colvis',
+                    text: 'Kolonner <i class="fas fa-columns"></i>'
+                }],
+            "language": {
+                "decimal":        "",
+                "emptyTable":     "Ingen data at vise",
+                "info":           "Viser _START_ til _END_ af _TOTAL_ linjer",
+                "infoEmpty":      "Viser 0 til 0 af 0 linjer",
+                "infoFiltered":   "(filtreret fra _MAX_ total linjer)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "Vis _MENU_ linjer",
+                "loadingRecords": "Indlæser...",
+                "processing":     "Arbejder...",
+                "search":         "Søg:",
+                "zeroRecords":    "ingen match fundet",
+                "paginate": {
+                    "first":      "Første",
+                    "last":       "Sidste",
+                    "next":       "Næste",
+                    "previous":   "Tidligere"
+                },
+                "aria": {
+                    "sortAscending":  ": aktiver for at sortere kolonne stigende",
+                    "sortDescending": ": aktiver for at sortere kolonne faldende"
+                }
+            }
+        });
+    });
+    table.buttons().container().appendTo( $('.col-sm-6:eq(0)', table.table().container()) );
+</script>
+}
